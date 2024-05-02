@@ -17,6 +17,17 @@ class ParenthesisCounter:
             [3] PIPA (Parenthesis Indexes Pairing Algorithm) -> pairs the indexes given from self.indexer method
 
     """
+
+    # def __init__(
+    #     self,
+    #     phrase: str,
+    #     searchingCharactersList: tuple = (
+    #         ("(", ")"),
+    #         ("[", "]"),
+    #         ("{", "}"),
+    #     ),
+    # ) -> None:
+
     def __init__(
         self,
         phrase: str,
@@ -64,21 +75,37 @@ class ParenthesisCounter:
                 chars_index_list = []
         self.indexes = chars_index_dict
 
-  
+    # def isPaired(self) -> bool:
+    #     """_summary_
+    #         This method checks if each pair characters either paired or not.
+
+    #         First checks if one of the pair chars are missing or not :
+    #             e.g. (((( and ]]]] -> returns False, () and {} -> passes the first condition
+    #         Second checks if total number of pair chars are equal or not:
+    #             e.g. (), {{{{}}}} and ()[][][][[[]]][] -> passes the condition and returns True
+    #             ()) and []] -> fails the condition and returns False.
+
+    #     Returns:
+    #         bool: True, if all opening and closing characters are paired
+    #             False, if not.
+    #     """
+    #     phrase: str = self.phrase
+    #     indexes: dict = self.indexes
+    #     searching_characters_list: tuple = self.searching_characters_list
+    #     for pair_char in searching_characters_list:
+    #         if (pair_char[0] in phrase) is not (pair_char[1] in phrase):
+    #             print(
+    #                 f"Syntax error : Check '{pair_char[0]}' and '{pair_char[1]}' were paired"
+    #             )
+    #             return False
+    #         for pair_char in searching_characters_list:
+    #             if indexes[pair_char[0]].__len__() != indexes[pair_char[1]].__len__():
+    #                 print(
+    #                     f"Syntax error : Check '{pair_char[0]}' and '{pair_char[1]}' were paired \n Missing open or close parenthesis or bracket"
+    #                 )
+    #                 return False
+    #     return True
     def isPaired(self) -> bool:
-         """_summary_
-             This method checks if each pair characters either paired or not.
-
-             First checks if one of the pair chars are missing or not :
-                 e.g. (((( and ]]]] -> returns False, () and {} -> passes the first condition
-             Second checks if total number of pair chars are equal or not:
-                 e.g. (), {{{{}}}} and ()[][][][[[]]][] -> passes the condition and returns True
-                 ()) and []] -> fails the condition and returns False.
-
-         Returns:
-             bool: True, if all opening and closing characters are paired
-                 False, if not.
-         """
         stack = []
         pair_dict = {")": "(", "]": "[", "}": "{"}
         for char in self.phrase:
@@ -124,6 +151,16 @@ class ParenthesisCounter:
             pairs_dict = {}
         return chars_pair_dict
 
+    def removeEmptyEntry(self, dictionary: dict):
+        """
+        removes empty key-values from dictionary
+        """
+        dict_keys: list = list(dictionary.keys())
+        for key in dict_keys:
+            if len(dictionary[key]) == 0:
+                dictionary.pop(key)
+        return dictionary
+
     def inputSimplifier(self):
         pass
 
@@ -131,9 +168,9 @@ class ParenthesisCounter:
         # Just a simple driver to implement in other parts.
         self.indexer()
         if self.isPaired():
-            return self.PIPA()
+            return self.removeEmptyEntry(self.PIPA())
 
 
 if __name__ == "__main__":
-    counter: object = ParenthesisCounter(phrase=input("Enter the phrase: "))
-    print(counter.driver())
+     counter: object = ParenthesisCounter(phrase=input("Enter the phrase: "))
+     print(counter.driver())
