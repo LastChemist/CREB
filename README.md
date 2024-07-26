@@ -1,8 +1,5 @@
-# CREB
-CREB stands for Chemical Reaction Equation Balancer, I am attempting to recreate a program to do it.
+# CREB/Development (progressing)
 
-# Project development process
-Since I'am not a professional and studying for exams therefore the dev process would be slow and in free times.
+Hey there! this is me and in this branch I will commit the latest actions in my repo to track changes then merge them with the main branch.
 
-# Contribution
-Feel free to contribute and share your Ideas! and or improve the code via comment or refactors (*smile)
+# Attention : this branch is open to every pull requests. feel free to contribute :)
